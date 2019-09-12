@@ -8,19 +8,19 @@ public class CalculoHoras {
 		DecimalFormat df = new DecimalFormat("R$ #,##0.00");
 		
 		int salarioMinimo = 880;
-		float salarioBruto;
+		float salarioLiquido;
 		float imposto;
 		float ValorGanhocomHoras;
-		float salarioHora = 256.08f;
+		float salarioHora = 264.00f;
 		System.out.println("DIGITE AS HORAS TRABALHADAS");
 		float numerodeHoras = leia.nextFloat();
 		
 		 ValorGanhocomHoras = numerodeHoras * salarioHora;
 		 imposto = ValorGanhocomHoras /100 *3;
-		 salarioBruto = ValorGanhocomHoras - imposto;
+		 salarioLiquido = ValorGanhocomHoras - imposto;
 		 
 		 System.out.println("ValorGanhocomHoras: " +df.format(ValorGanhocomHoras));
-		 System.out.println("salarioBruto: " +df.format(salarioBruto));
+		 System.out.println("salarioLiquido: " +df.format(salarioLiquido));
 	}
 
 }
