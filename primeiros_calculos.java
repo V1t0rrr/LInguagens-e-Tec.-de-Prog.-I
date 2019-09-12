@@ -5,8 +5,8 @@ public class aulaLTP1 {
 		double d = 2.5, f = 0;
 		float g;
 		
-		c = a / b; /*pedi para que o resultado de "c" fosse gerado a partir da divis„o de a sobre b*/
-		d += d / a; /*pedi para que o resultado de "d" fosse gerado da divis„o de d por a*/
+		c = a / b; /*pedi para que o resultado de "c" fosse gerado a partir da divis√£o de a sobre b*/
+		d += d / a; /*pedi para que o resultado de "d" fosse gerado da divis√£o de d por a*/
 		f -= a++/d;
 		g = (float) (d*5.1);
 		
