@@ -9,9 +9,9 @@ public class another_another_again {
 		resultado2 = (mesadaJoaozinho > mesadaZezinho);
 		resultado3 = (mesadaJoaozinho == mesadaZezinho);
 		
-		System.out.println(" é menor?: = " + resultado1);
-		System.out.println(" é maior?: = " + resultado2);
-		System.out.println(" é igual?: = " + resultado3);
+		System.out.println(" Ã© menor?: = " + resultado1);
+		System.out.println(" Ã© maior?: = " + resultado2);
+		System.out.println(" Ã© igual?: = " + resultado3);
 	}
 
 }
