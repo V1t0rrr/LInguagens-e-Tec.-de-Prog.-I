@@ -1,96 +1,108 @@
-package outro;
+package DA;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-public class outro {
+public class Lista_07 {
+
 	public static void main(String[] args) {
 		Scanner leia = new Scanner(System.in);
+		DecimalFormat df = new DecimalFormat("R$ #,##0.00");
+		DecimalFormat perc = new DecimalFormat("0.00'%'");
 
-		DecimalFormat df = new DecimalFormat("#,##0.00");
-		int quantidadepao = 0, quantidadebroa = 0, qntdtotalpao = 0, qntdtotalbroa = 0, juntos, formpgnto = 0, tpao = 0, tbroa = 0;
-		float vlrtotalpao, vlrtotalbroa, vlrtotaljuntos, arrecadados, fpao, fbroa, tjuntos, qntdtotaljuntos =0, poup;
-		float percentualpao, percentualbroa;
-		String formaPagamento = null;
-		do { 
+		float   precoPao = 0.62f, 
+				precoBroa = 2.90f, 
+				vendasPaes, 
+				vendasBroas,
+				totalVendasPaes=0, 
+				totalVendasBroas=0, 
+				totalVendas = 0, 
+				totalVendasGeral = 0,
+				poupanca=0,
+				maiorVenda = 0,
+				menorVenda = Float.MAX_VALUE;
+		
+		int 	qtdPaes, 
+				qtdBroas,
+				totalQtdPaes=0, 
+				totalQtdBroas=0, 
+				totalItensVendidos=0, 
+				formaPagamento;
+
+		do {
+			vendasPaes = 0;
+			vendasBroas = 0;
+			do {
+				System.out.print("Informe a QUANTIDADE de PÃES (-1 para SAIR): ");
+				qtdPaes = leia.nextInt();
+				if(qtdPaes <= 0 && qtdPaes != -1) {
+					System.err.println("===> A quantidade de PÃES deve ser maior que ZERO!");
+				}
+			} while (qtdPaes <= 0 && qtdPaes != -1);
+
+			if (qtdPaes == -1) {
+				break;
+			}
 
 			do {
+				System.out.print("Informe a QUANTIDADE de BROAS: ");
+				qtdBroas = leia.nextInt();
+				if(qtdBroas <= 0) {
+					System.err.println("===> A quantidade de BROAS deve ser maior que ZERO!");
+				}
+			} while (qtdBroas <= 0);
 
-
-
-		System.out.println("DIGITE A QUANTIDADE DE PAES");
-		quantidadepao = leia.nextInt();
-
-		System.out.println("DIGITE A QUANTIDADE DE BROAS");
-		quantidadebroa = leia.nextInt();
-		if(quantidadepao <-1 || quantidadebroa <-1) {
-			System.out.println("PARA CONTINUAR TEM QUE ESCOLHER 1 PRODUTO PELO MENOS");
-		}
-
-	} while (quantidadebroa<1 && quantidadepao<1);
 			do {
-		System.out.println("DIGITE A FORMA DE PAGAMENTO (1)CARTAO (2) DINHEIRO");
-		formpgnto = leia.nextInt();
-		if (formpgnto == 1) {
-			formaPagamento = "CARTAO";
-		}else if (formpgnto == 2) {
-			formaPagamento = "DINHEIRO";
-		}
-			} while (formpgnto < 1 || formpgnto > 2);
+				System.out.print("Informa a FORMA DE PAGAMENTO\n 1 - Cartão\n 2 - Dinheiro \n Opção: ");
+				formaPagamento = leia.nextInt();
+				if(formaPagamento < 1 || formaPagamento > 2) {
+					System.err.println("===> Digite apenas código 1 e 2");
+				}
+			} while (formaPagamento < 1 || formaPagamento > 2);
 
-	qntdtotalpao= quantidadepao;
-	qntdtotalbroa = quantidadebroa;
-	vlrtotalpao = qntdtotalpao * 0.68f;
-	vlrtotalbroa = qntdtotalbroa * 2.90f;
-	vlrtotaljuntos = vlrtotalpao + vlrtotalbroa;
-	juntos = qntdtotalpao + qntdtotalbroa;
+			vendasPaes = precoPao * qtdPaes;
+			vendasBroas = precoBroa * qtdBroas;
+			totalVendas = vendasPaes + vendasBroas;
+			totalVendasGeral += vendasPaes + vendasBroas;
+			totalVendasBroas += vendasBroas;
+			totalVendasPaes += vendasPaes;
+			totalQtdBroas += qtdBroas;
+			totalQtdPaes += qtdPaes;
+			poupanca += totalVendas * 0.30f;
+			
+			if(totalVendas > maiorVenda) {
+				maiorVenda = totalVendas;
+			}
+			
+			if(totalVendas < menorVenda) {
+				menorVenda = totalVendas;
+			}
 
-
-	System.out.println("========== RESULTADOS ==========================");
-	System.out.println("A quantidade de broas vendidas nessa compra foi: "+qntdtotalbroa );
-	System.out.println("A quantidade de paes  vendidas nessa compra foi: "+qntdtotalpao  );
-
-	System.out.println("O valor total de paes: " + df.format(vlrtotalpao));
-	System.out.println("O valor total de broas: " + df.format(vlrtotalbroa));
-
-	System.out.println("FORMA DE PAGAMENTO           " +formaPagamento );
-	System.out.println("TOTAL DE PAES E BROAS: " + df.format(vlrtotaljuntos));
-
-	System.out.println("=======================================================");
-
-	 tpao = qntdtotalpao;
-	 tbroa =qntdtotalbroa;
-	 fpao = tpao *0.68f;
-	 fbroa = tbroa * 2.90f;
-	 arrecadados = fpao + fbroa;
-	 tjuntos = tpao + tbroa;
-
-     System.out.println("Exit = 0");
-     int sair = leia.nextInt();
-
-    if(sair == 0){
-     break;
-     }
-
-
-     } while (true);
-
-
- qntdtotaljuntos= tjuntos ;
-poup = (arrecadados )/100 *0.30f;
-percentualpao = ((tjuntos /100 * tpao));
-percentualbroa = ((tjuntos /100 * tbroa));
-
-
-System.out.println("========== RESULTADOS FINAIS =========================="); 	
-System.out.println("A quantidade de broas vendidas nessa compra foi: "+tbroa );	
-System.out.println("A quantidade de paes  vendidas nessa compra foi: "+tpao  );	
-
-System.out.println("O valor total de broas vendidos: " + df.format(fbroa));	
-System.out.println("O valor total de paes vendidos: " + df.format(fpao));		
-System.out.println("O valor total vendidos: " + df.format(arrecadados));		
-System.out.println("O percentual do pão é : " + (percentualpao) + "%");					
-System.out.println("O percentual da broa é: " + (percentualbroa) + "%");					
+			System.out.println("RELATÓRIO INTERMEDIÁRIO==================================");
+			System.out.println("Quantidade Pães   :" + qtdPaes);
+			System.out.println("Venda Pães        :" + df.format(vendasPaes));
+			System.out.println("---------------------------------------------------------");
+			System.out.println("Quantidade Broas  :" + qtdBroas);
+			System.out.println("Venda Broas       :" + df.format(vendasBroas));
+			System.out.println("---------------------------------------------------------");
+			System.out.println("Total Vendido     :" + df.format(totalVendas));
+			System.out.println("=========================================================");
+		} while (true);
+		totalItensVendidos = totalQtdBroas + totalQtdPaes;
+		
+		System.out.println("\n\nRELATÓRIO FINAL =========================================");
+		System.out.println("Venda Pães                   :" + df.format(totalVendasPaes));
+		System.out.println("Percentual de vendas de Pães :" + perc.format(totalQtdPaes/(float)totalItensVendidos*100));
+		System.out.println("---------------------------------------------------------");
+		System.out.println("Venda Broas                  :" + df.format(totalVendasBroas));
+		System.out.println("Percentual de vendas de Broas:" + perc.format(totalQtdBroas/(float)totalItensVendidos*100));
+		System.out.println("---------------------------------------------------------");
+		System.out.println("Total Arrecadado             :" + df.format(totalVendasGeral));
+		System.out.println("Poupança                     :" + df.format(poupanca));
+		System.out.println("---------------------------------------------------------");
+		System.out.println("MENOR venda                  :" + df.format(menorVenda));
+		System.out.println("MAIOR venda                  :" + df.format(maiorVenda));
+		System.out.println("=========================================================");
 
 	}
 }
